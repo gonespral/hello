@@ -1,10 +1,11 @@
 [project]
-name = "crimson-quasar"
+name = "facial-recognition-project"
 version = "0.1.0"
-description = "Add your description here"
+description = "A robust facial recognition system leveraging PyTorch and OpenCV."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "PyYAML >= 5.4.1",
     "matplotlib>=3.10.8",
     "mediapipe<0.10.10",
     "numpy>=2.2.6",

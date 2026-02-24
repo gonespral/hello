@@ -1,0 +1,5 @@
+# Configuration file for Crimson Quasar Project
+
+camera_device: 2  # Default camera device set to /dev/video2 (IR camera)
+data_dir: "data"  # Directory for storing trained data
+num_samples: 20  # Number of samples to collect per training session

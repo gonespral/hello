@@ -8,3 +8,7 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Trained data
+data/faces.pkl
+data/labels.pkl

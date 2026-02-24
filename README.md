@@ -1,41 +1,36 @@
-# Facial Recognition Project Facial Recognition
-
-## Overview
-Facial Recognition Project is a facial recognition system leveraging state-of-the-art libraries like PyTorch, OpenCV, and Scikit-learn. It allows real-time facial authentication and detection using pre-trained models.
+Hello is a robust facial recognition system leveraging advanced libraries like PyTorch, OpenCV, and Scikit-learn. Designed for real-time detection and authentication, the project provides a scalable and efficient solution for working with custom facial datasets.
 
 ## Features
-- Real-time video processing with OpenCV
-- Lightweight and optimized detection pipeline
-- Scalable design for training custom facial datasets
+- Real-time video processing
+- Customized detection pipeline
+- Seamless scalability for training your own datasets
 
 ## Environment Setup
-Use **uv** for managing environments:
+To set up the environment:
 
 ```bash
-uv new <your-env-name>
-uv install
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
 ## Usage
-1. Train the model with your facial datasets:
+1. **Train the model**:
    ```bash
    python main.py train
    ```
-2. Run facial recognition:
+2. **Run facial recognition**:
    ```bash
    python main.py recognize
    ```
 
-## Dependencies
-All project dependencies are managed through the `pyproject.toml` file. Install dependencies from the `uv` environment.
-
 ## Contributing
 1. Clone the repository:
    ```bash
-git clone <repository_url>
+   git clone <repository_url>
    ```
-2. Install dependencies with `uv`.
-3. Submit PRs for enhancements or bug fixes.
+2. Install dependencies and set up the environment.
+3. Submit pull requests for improvements.
 
 ## License
-MIT License - See LICENSE file for details.
+This project is licensed under the MIT License. See the LICENSE file for details.

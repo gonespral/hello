@@ -27,7 +27,7 @@ class FaceSystem:
         self.model = None
         self.load_data()
         self.face_cascade = cv2.CascadeClassifier(
-            cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
+            os.path.join(cv2.data.haarcascades, "haarcascade_frontalface_default.xml")
         )
 
     def load_data(self):
@@ -82,7 +82,20 @@ class FaceSystem:
                 self.known_faces.append(embedding)
                 self.known_labels.append(name)
                 samples_collected += 1
+                progress = int((samples_collected / NUM_SAMPLES) * 100)
                 print(f"Samples collected: {samples_collected}/{NUM_SAMPLES}")
+                cv2.putText(
+                    frame,
+                    f"Progress: {samples_collected}/{NUM_SAMPLES} ({progress}%)",
+                    (10, 30),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.7,
+                    (255, 255, 255),
+                    2,
+                )
+                cv2.rectangle(
+                    frame, (50, 50), (50 + (progress * 2), 70), (0, 255, 0), -1
+                )
                 if samples_collected >= NUM_SAMPLES:
                     break
 
@@ -208,29 +221,32 @@ if __name__ == "__main__":
 
     signal.signal(signal.SIGINT, signal_handler)
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--camera",
-        type=int,
-        default=CAMERA_INDEX,
-        help="Index of the camera to use (default: IR camera)",
-    )
-    parser.add_argument("--name", type=str, help="Name for training")
-    parser.add_argument(
-        "--mode",
-        type=str,
-        choices=["train", "test", "test_devices"],
-        help="Mode to run: train, test, or test_devices",
-    )
-    args = parser.parse_args()
+parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--camera",
+    type=int,
+    default=CAMERA_INDEX,
+    help="Index of the camera to use (default: IR camera)",
+)
+parser.add_argument("--name", type=str, help="Optional name for training user")
+parser.add_argument(
+    "--mode",
+    type=str,
+    choices=["train", "test", "test_devices"],
+    help="Mode to execute: train, test, or test_devices",
+)
 
-    face_system = FaceSystem()
+args = parser.parse_args()
+face_system = FaceSystem()
 
-    if args.mode == "train" and args.name:
-        face_system.train(args.name, args.camera)
-    elif args.mode == "test":
-        face_system.test(args.camera)
-    elif args.mode == "test_devices":
-        face_system.test_devices()
-    else:
-        print("Invalid arguments. Use --help for usage details.")
+if args.mode == "train":
+    name = args.name if args.name else config.get("default_name", "User")
+    face_system.train(name, args.camera)
+elif args.mode == "test":
+    face_system.test(args.camera)
+    face_system.test(args.camera)
+elif args.mode == "test_devices":
+    face_system.test_devices()
+else:
+    print("Invalid arguments. Use --help for usage details.")

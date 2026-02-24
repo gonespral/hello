@@ -1,4 +1,6 @@
-Hello is a robust facial recognition system leveraging advanced libraries like PyTorch, OpenCV, and Scikit-learn. This project is totally vibe coded! Designed for real-time detection and authentication, the project provides a scalable and efficient solution for working with custom facial datasets.
+Hello is a robust facial recognition system leveraging advanced libraries like PyTorch, OpenCV, and Scikit-learn.
+
+BTW, this is completely vibe coded! Designed for real-time detection and authentication, the project provides a scalable and efficient solution for working with custom facial datasets.
 
 ## Features
 - Real-time video processing
